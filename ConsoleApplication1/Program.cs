@@ -19,7 +19,6 @@ namespace ConsoleApplication1
         {
             var ItemCache = new SourceCache<string, string>(x => x);
             var ItemsSorter = new ItemSorter();
-            var PageController = new PageController();
             var FilterController = new FilterController<string>(FilterFunc);
             var SortController = new SortController<string>(ItemsSorter);
 
@@ -30,7 +29,6 @@ namespace ConsoleApplication1
             var Connected = FilteredCache
                 .Connect()
                 .Sort(SortController)
-                //.ObserveOnDispatcher()
                 .Bind(Items)
                 .Subscribe();
 
@@ -45,7 +43,7 @@ namespace ConsoleApplication1
         }
     }
 
-    public class ItemSorter : IComparer<String>
+    public class ItemSorter : IComparer<string>
     {
         public int Compare(string x, string y)
         {
